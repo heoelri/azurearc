@@ -25,6 +25,17 @@ For a suitable work environment we recommend to install the Windows Subsystem fo
 
 If you don't have a prefered Linux Distribution, use "Ubuntu", as we've build our labs on top of the Ubuntu Distribution.
 
+### WSL and Minikube
+To make sure that you can talk to your Minikube-based Kubernetes Cluster from within the WSL, you've to modify the Kubernetes Configuration (.kube/config) first.
+
+```bash
+kubectl config set-cluster minikube --server=https://<minikubeip>:8443 --certificate-authority=/mnt/c/Users/<windowsusername>/.minikube/ca.crt
+kubectl config set-credentials minikube --client-certificate=/mnt/c/Users/<windowsusername>/.minikube/client.crt --client-key=/mnt/c/Users/<windowsusername>/.minikube/client.key
+kubectl config set-context minikube --cluster=minikube --user=minikube
+```
+> **Important!** Make sure that you that you replace <minikubeip> and <windowsusername> with the correct values.
+> This is based on James Sturtevant's blog post [Running Kubernetes Minikube on Windows 10 with WSL](https://www.jamessturtevant.com/posts/Running-Kubernetes-Minikube-on-Windows-10-with-WSL/) 
+
 ## Azure CLI
 Now that we've our Hypervisor, Minikube and the Windows Subsystem for Linux installed, we can continue to install some additional tooling. First of all we need the Azure CLI in our WSL environment.
 
