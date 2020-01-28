@@ -3,6 +3,9 @@
 ## Overview
 
 * Azure Arc Server Management
+  * Lab 1 - Managing Servers with Azure Arc
+    * Prepare a Lab VM
+    * Onboard a Server with Azure Arc
 
 * Azure Arc Kubernetes
   * [Lab 1 - Getting started with Azure Arc on Kubernetes](arck8s/lab1/lab1.md)
