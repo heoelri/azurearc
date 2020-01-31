@@ -140,6 +140,8 @@ helm upgrade azure-arc azurearcfork8s/azure-arc-k8sagents \
 
 This will now install the AzureArc agent on your Kubernetes cluster.
 
+### Validate Arc Agent
+
 To validate the deployment, check the status of the Azure Arc agent deployments and pods:
 
 ```bash
@@ -157,5 +159,7 @@ NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
 deployment.apps/config-agent         1/1     1            1           2d
 deployment.apps/connect-agent        1/1     1            1           2d
 deployment.apps/controller-manager   1/1     1            1           2d
-deployment.apps/metrics-agent        1/1     1            0           2d
+deployment.apps/metrics-agent        1/1     1            1           2d
 ```
+
+Let us now continue with [Lab 2](/arck8s/lab2/lab2.md) or go back to the [Overview](/README.md).
