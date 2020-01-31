@@ -32,11 +32,25 @@ If you don't have a prefered Linux Distribution, use "Ubuntu", as we've build ou
 
 To make sure that you can talk to your Minikube-based Kubernetes Cluster from within the WSL, you've to modify the Kubernetes Configuration (.kube/config) first.
 
+Retrieve your Minikube IP-Address via Hyper-V Manager or PowerShell:
+
+_PowerShell_
+```powershell
+(get-vm -name minikube | Get-VMNetworkAdapter).IPAddresses
+```
+
+After this, make sure that your kubectl configuration is correct:
+
+_Bash (WSL)_
 ```bash
-kubectl config set-cluster minikube --server=https://<minikubeip>:8443 --certificate-authority=/mnt/c/Users/<windowsusername>/.minikube/ca.crt
-kubectl config set-credentials minikube --client-certificate=/mnt/c/Users/<windowsusername>/.minikube/client.crt --client-key=/mnt/c/Users/<windowsusername>/.minikube/client.key
+MINIKUBEIP=<minikubeip>
+WINUSER=<windowsusername>
+kubectl config set-cluster minikube --server=https://$MINIKUBEIP:8443 --certificate-authority=/mnt/c/Users/$WINUSER/.minikube/ca.crt
+kubectl config set-credentials minikube --client-certificate=/mnt/c/Users/$WINUSER/.minikube/client.crt --client-key=/mnt/c/Users/$WINUSER/.minikube/client.key
 kubectl config set-context minikube --cluster=minikube --user=minikube
 ```
+
+> This might also be nessecary to fix issues after a reboot of your machine.
 
 > **Important!** Make sure that you that you replace <minikubeip> and <windowsusername> with the correct values.
 > This is based on James Sturtevant's blog post [Running Kubernetes Minikube on Windows 10 with WSL](https://www.jamessturtevant.com/posts/Running-Kubernetes-Minikube-on-Windows-10-with-WSL/)
