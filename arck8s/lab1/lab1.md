@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this lab we're going to deploy a Kubernetes Cluster (based on minikube) on a Windows 10 device. At the end of this lab you'll have an Azure Arc managed Kubernetes Cluster running on Windows 10.
+In this lab we are going to deploy a Kubernetes Cluster (based on minikube) on a Windows 10 device. At the end of this lab you will have an Azure Arc managed Kubernetes Cluster running on Windows 10.
 
 ## Preparation
 
@@ -33,7 +33,7 @@ Make sure that "registrationState" is set to "Registered".
 
 ### Check if your cluster is up-and-running
 
-We assume that our Kubernetes Cluster is already up and running and you've all the required tools in place. To make sure that you've access to your cluster, please run:
+We assume that our Kubernetes Cluster is already up and running and you have all the required tools in place. To make sure that you have access to your cluster, please run:
 
 ```bash
 kubectl get nodes
@@ -46,11 +46,11 @@ NAME       STATUS   ROLES    AGE    VERSION
 minikube   Ready    master   3d1h   v1.17.0
 ```
 
-If this isn't working, yet, please return to the [Lab 1 Prerequisites](/arck8s/lab1/lab1_prerequisites.md).
+If this is not working, yet, please return to the [Lab 1 Prerequisites](/arck8s/lab1/lab1_prerequisites.md).
 
 ### Prepare Arc Agent deployment
 
-Before we can proceed with the deployment we've to gather a few information about our subscription.
+Before we can proceed with the deployment we have to gather a few information about our subscription.
 
 ```bash
 # Azure Configuration Details
@@ -65,7 +65,7 @@ export CONNECTED_CLUSTER_URI=https://management.azure.com/subscriptions/${SUBSCR
 export CONFIG_URI=${CONNECTED_CLUSTER_URI}/providers/Microsoft.KubernetesConfiguration/sourceControlConfigurations/${CONFIGURATION_NAME}
 ```
 
-Based on above's values we've to make sure that our resource group exists. You can run this in your Azure Cloud Shell:
+Based on aboves values we have to make sure that our resource group exists. You can run this in your Azure Cloud Shell:
 
 ```bash
 az group create -n ${RESOURCE_GROUP} -l EastUS
@@ -105,7 +105,7 @@ az role assignment create --role Contributor --assignee ${AZURE_ARC_ONBOARDING_C
 
 ### Deploy Arc Agent
 
-Now that we've gathered all required information we can now proceed with the deployment itself. The Arc Agent is packaged using [helm](http://helm.sh) (a Kubernetes package manager).
+Now that we have gathered all required information we can now proceed with the deployment itself. The Arc Agent is packaged using [helm](http://helm.sh) (a Kubernetes package manager).
 
 Add the AzureArc Helm Chart repository:
 
@@ -151,11 +151,11 @@ NAME                                     READY   STATUS             RESTARTS   A
 pod/config-agent-675df89d78-n7thn        2/2     Running            0          41m
 pod/connect-agent-69ffc75fd7-4lcpg       2/2     Running            0          41m
 pod/controller-manager-c485c499b-vkkhh   2/2     Running            1          41m
-pod/metrics-agent-7f4b6bf9cc-cmngc       0/1     Running            9          41m
+pod/metrics-agent-7f4b6bf9cc-cmngc       1/1     Running            9          41m
 
 NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
 deployment.apps/config-agent         1/1     1            1           2d
 deployment.apps/connect-agent        1/1     1            1           2d
 deployment.apps/controller-manager   1/1     1            1           2d
-deployment.apps/metrics-agent        1/1     1            0           41m
+deployment.apps/metrics-agent        1/1     1            0           2d
 ```

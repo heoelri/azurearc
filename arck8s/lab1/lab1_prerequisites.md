@@ -35,6 +35,7 @@ To make sure that you can talk to your Minikube-based Kubernetes Cluster from wi
 Retrieve your Minikube IP-Address via Hyper-V Manager or PowerShell:
 
 _PowerShell_
+
 ```powershell
 (get-vm -name minikube | Get-VMNetworkAdapter).IPAddresses
 ```
@@ -42,6 +43,7 @@ _PowerShell_
 After this, make sure that your kubectl configuration is correct:
 
 _Bash (WSL)_
+
 ```bash
 MINIKUBEIP=<minikubeip>
 WINUSER=<windowsusername>
