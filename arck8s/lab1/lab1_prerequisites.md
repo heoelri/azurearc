@@ -50,6 +50,7 @@ WINUSER=<windowsusername>
 kubectl config set-cluster minikube --server=https://$MINIKUBEIP:8443 --certificate-authority=/mnt/c/Users/$WINUSER/.minikube/ca.crt
 kubectl config set-credentials minikube --client-certificate=/mnt/c/Users/$WINUSER/.minikube/client.crt --client-key=/mnt/c/Users/$WINUSER/.minikube/client.key
 kubectl config set-context minikube --cluster=minikube --user=minikube
+kubectl config use-context minikube
 ```
 
 > This might also be nessecary to fix issues after a reboot of your machine.
